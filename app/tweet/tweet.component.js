@@ -27,10 +27,15 @@ System.register(['angular2/core', './../favorite/favorite.component'], function(
                         {
                             image: 'location of the image',
                             title: 'title of the tweet',
-                            text: 'body of the tweet'
+                            text: 'body of the tweet',
+                            totalFavs: 0,
+                            isFav: false
                         }
                     ];
                 }
+                TweetComponent.prototype.changeFav = function ($event) {
+                    console.log($event);
+                };
                 __decorate([
                     core_1.Input(), 
                     __metadata('design:type', Object)
@@ -38,8 +43,8 @@ System.register(['angular2/core', './../favorite/favorite.component'], function(
                 TweetComponent = __decorate([
                     core_1.Component({
                         selector: 'tweet',
-                        template: "\n\t\t<ul>\n\t\t\t<div class=\"media\">\n\t\t\t\t<li *ngFor=\"#tweet of tweets\">\n\t\t\t\t\t<a class=\"media-left\" href=\"#\">\n\t\t\t\t\t\t<img class=\"media-object\" \n\t\t\t\t\t\t\t [src]=\"tweet.image\" \n\t\t\t\t\t\t\t alt=\"Generic placeholder image\">\n\t\t\t\t\t</a>\n\t\t\t\t  \t<div class=\"media-body\">\n\t\t\t\t  \t\t<h4 class=\"media-heading\">{{ tweet.title }}</h4>\n\t\t\t\t\t\t<span>{{ tweet.text }}</span>\n\n\t\t\t\t\t\t<span class=\"favs\">\n\t\t\t\t\t\t\t<favorite></favorite>\n\t\t\t\t\t\t</span>\n\t\t\t\t\t</div>\n\t\t\t\t</li>\n\t\t\t</div>\n\t\t</ul>\n\t",
-                        styles: ["\n\t\t.favs {\n\t\t\tfloat: right;\n\t\t\tmargin: 20px;\n\t\t}\n\t"],
+                        template: "\n\t\t<ul>\n\t\t\t<div class=\"media\">\n\t\t\t\t<li *ngFor=\"#tweet of tweets\">\n\t\t\t\t\t<a class=\"media-left\" href=\"#\">\n\t\t\t\t\t\t<img class=\"media-object\" \n\t\t\t\t\t\t\t [src]=\"tweet.image\" \n\t\t\t\t\t\t\t alt=\"Generic placeholder image\">\n\t\t\t\t\t</a>\n\t\t\t\t  \t<div class=\"media-body\">\n\t\t\t\t  \t\t<h4 class=\"media-heading\">{{ tweet.title }}</h4>\n\t\t\t\t\t\t<span>{{ tweet.text }}</span>\n\n\t\t\t\t\t\t<span class=\"favs\">\n\t\t\t\t\t\t\t<favorite [isFav]=\"tweet.isFav\"\n\t\t\t\t\t\t\t\t\t  [totalFavs]=\"tweet.totalFavs\"\n\t\t\t\t\t\t\t\t\t  (changed)=\"changeFav($event)\">\n\t\t\t\t\t\t\t</favorite>\n\t\t\t\t\t\t</span>\n\t\t\t\t\t</div>\n\t\t\t\t</li>\n\t\t\t</div>\n\t\t</ul>\n\t",
+                        styles: ["\n\t\t.favs {\n\t\t\tfloat: right;\n\t\t\tmargin-right: 20px;\n\t\t}\n\t"],
                         directives: [favorite_component_1.FavoriteComponent]
                     }), 
                     __metadata('design:paramtypes', [])
@@ -50,5 +55,4 @@ System.register(['angular2/core', './../favorite/favorite.component'], function(
         }
     }
 });
-// *ngFor="#course of courses" 
 //# sourceMappingURL=tweet.component.js.map

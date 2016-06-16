@@ -20,11 +20,32 @@ System.register(['angular2/core'], function(exports_1, context_1) {
         execute: function() {
             FavoriteComponent = (function () {
                 function FavoriteComponent() {
+                    this.totalFavs = 0;
+                    this.isFav = false;
+                    this.changed = new core_1.EventEmitter();
                 }
+                FavoriteComponent.prototype.markFav = function () {
+                    this.isFav = !this.isFav;
+                    this.totalFavs += this.isFav ? 1 : -1;
+                    this.changed.emit({ 'Favorite changed': this.isFav });
+                };
+                __decorate([
+                    core_1.Input(), 
+                    __metadata('design:type', Object)
+                ], FavoriteComponent.prototype, "totalFavs", void 0);
+                __decorate([
+                    core_1.Input(), 
+                    __metadata('design:type', Object)
+                ], FavoriteComponent.prototype, "isFav", void 0);
+                __decorate([
+                    core_1.Output(), 
+                    __metadata('design:type', Object)
+                ], FavoriteComponent.prototype, "changed", void 0);
                 FavoriteComponent = __decorate([
                     core_1.Component({
                         selector: 'favorite',
-                        template: "\n\t\t<span>favs</span>\n\t"
+                        template: "\n\t\t<span class=\"glyphicon glyphicon-heart\"\n\t\t\t  [class.favored]=\"isFav\"\n\t\t\t  (click)=\"markFav()\"></span>\n\t\t<span>{{ totalFavs }}</span>\n\t",
+                        styles: ["\n\t\t.glyphicon-heart {\n\t\t\tcursor: pointer;\n\t\t}\n\t\t.favored {\n\t\t\tcolor: deeppink;\n\t\t}\n\t"]
                     }), 
                     __metadata('design:paramtypes', [])
                 ], FavoriteComponent);

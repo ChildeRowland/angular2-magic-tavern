@@ -17,7 +17,10 @@ import { FavoriteComponent } from './../favorite/favorite.component';
 						<span>{{ tweet.text }}</span>
 
 						<span class="favs">
-							<favorite></favorite>
+							<favorite [isFav]="tweet.isFav"
+									  [totalFavs]="tweet.totalFavs"
+									  (changed)="changeFav($event)">
+							</favorite>
 						</span>
 					</div>
 				</li>
@@ -27,7 +30,7 @@ import { FavoriteComponent } from './../favorite/favorite.component';
 	styles: [`
 		.favs {
 			float: right;
-			margin: 20px;
+			margin-right: 20px;
 		}
 	`],
 	directives: [ FavoriteComponent ]
@@ -38,9 +41,13 @@ export class TweetComponent {
 		{
 			image: 'location of the image',
 			title: 'title of the tweet',
-			text: 'body of the tweet'
+			text: 'body of the tweet',
+			totalFavs: 0,
+			isFav: false
 		}
 	]
-}
 
-// *ngFor="#course of courses"
+	changeFav($event) {
+		console.log($event);
+	}
+}

@@ -1,5 +1,6 @@
 import { Component } from 'angular2/core';
 import { TweetComponent } from './tweet/tweet.component';
+import { TweetService } from './tweet/tweet.service';
 
 @Component({
     selector: 'my-app',
@@ -9,27 +10,15 @@ import { TweetComponent } from './tweet/tweet.component';
 
     	</tweet>
     `
-    directives: [ TweetComponent ]
+    directives: [ TweetComponent ],
+    providers: [ TweetService ]
 })
 
 export class AppComponent { 
-	allTweets = [
-		{
-			image: 'http://lorempixel.com/200/100/food/1'
-			title: 'First Tweet adout Foon',
-			text: 'Hello from the magic tavern'
-		}, {
-			image: 'http://lorempixel.com/200/100/food/2'
-			title: 'Co-hosts',
-			text: 'Welcome to Chunt and Usidore'
-		}, {
-			image: 'http://lorempixel.com/200/100/food/3'
-			title: 'Today\'s Show:',
-			text: 'Our Guest today is from the swamp of sadness'
-		}
-	]
-}
+	allTweets: any[];
 
-// component tweet for one tweet
-// media object on bootstrap
-// lorempixel.com ?1
+	constructor( tweetService: TweetService ) {
+		this.allTweets = tweetService.getTweets();
+	}
+
+}
