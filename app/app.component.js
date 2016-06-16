@@ -31,7 +31,7 @@ System.register(['angular2/core', './tweet/tweet.component', './tweet/tweet.serv
                 AppComponent = __decorate([
                     core_1.Component({
                         selector: 'my-app',
-                        template: "\n    \t<h1>Welcome to Twatterton</h1>\n    \t<tweet [tweets]=\"allTweets\">\n\n    \t</tweet>\n    ",
+                        template: "\n    \t<h1>Welcome to Twatterton</h1>\n    \t<div *ngFor=\"#tweet of allTweets\">\n\t\t\t<tweet [data]=\"tweet\">\n\t\t\t</tweet>\n    \t</div>\n    ",
                         directives: [tweet_component_1.TweetComponent],
                         providers: [tweet_service_1.TweetService]
                     }), 

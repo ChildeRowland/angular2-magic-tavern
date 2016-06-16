@@ -6,9 +6,10 @@ import { TweetService } from './tweet/tweet.service';
     selector: 'my-app',
     template: `
     	<h1>Welcome to Twatterton</h1>
-    	<tweet [tweets]="allTweets">
-
-    	</tweet>
+    	<div *ngFor="#tweet of allTweets">
+			<tweet [data]="tweet">
+			</tweet>
+    	</div>
     `
     directives: [ TweetComponent ],
     providers: [ TweetService ]

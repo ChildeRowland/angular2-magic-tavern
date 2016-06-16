@@ -4,30 +4,30 @@ import { FavoriteComponent } from './../favorite/favorite.component';
 @Component ({
 	selector: 'tweet',
 	template: `
-		<ul>
-			<div class="media">
-				<li *ngFor="#tweet of tweets">
-					<a class="media-left" href="#">
-						<img class="media-object" 
-							 [src]="tweet.image" 
-							 alt="Generic placeholder image">
-					</a>
-				  	<div class="media-body">
-				  		<h4 class="media-heading">{{ tweet.title }}</h4>
-						<span>{{ tweet.text }}</span>
+		<div class="media">
+			<a class="media-left" href="#">
+				<img class="media-object" 
+					 [src]="data.imageUrl" 
+					 alt="Generic placeholder image">
+			</a>
+		  	<div class="media-body">
+		  		<h4 class="media-heading">{{ data.title }}</h4>
+		  		<p>{{ data.handle }}</p>
+				<span>{{ data.text }}</span>
 
-						<span class="favs">
-							<favorite [isFav]="tweet.isFav"
-									  [totalFavs]="tweet.totalFavs"
-									  (changed)="changeFav($event)">
-							</favorite>
-						</span>
-					</div>
-				</li>
+				<span class="favs">
+					<favorite [isFav]="data.isFav"
+							  [totalFavs]="data.totalFavs"
+							  (changed)="changeFav($event)">
+					</favorite>
+				</span>
 			</div>
-		</ul>
+		</div>
 	`,
 	styles: [`
+		.media {
+			margin-top: 25px;
+		}
 		.favs {
 			float: right;
 			margin-right: 20px;
@@ -37,15 +37,7 @@ import { FavoriteComponent } from './../favorite/favorite.component';
 })
 
 export class TweetComponent {
-	@Input() tweets = [
-		{
-			image: 'location of the image',
-			title: 'title of the tweet',
-			text: 'body of the tweet',
-			totalFavs: 0,
-			isFav: false
-		}
-	]
+	@Input() data;
 
 	changeFav($event) {
 		console.log($event);
